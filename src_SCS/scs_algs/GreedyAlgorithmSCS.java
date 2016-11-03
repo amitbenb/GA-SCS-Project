@@ -1,11 +1,9 @@
 package scs_algs;
 
-import generators.SCS_ProblemGenerator;
+import generators.SCS_BaseGenerator;
 
 import java.io.File;
 import java.util.Scanner;
-
-import popPack.indPack.GA_IntVector_Individual.GA_Int_Atom;
 
 public class GreedyAlgorithmSCS
 {
@@ -30,6 +28,8 @@ public class GreedyAlgorithmSCS
 		makeWorkingCopy(working_copy, available_substrings);
 		
 		while(greedy_merge(working_copy, available_substrings));
+//			if(Math.random() < 0.2)
+//				System.out.println(Math.random() + "!");
 		
 		
 //		System.out.print("X");
@@ -193,7 +193,7 @@ public class GreedyAlgorithmSCS
 				{
 					if(available_substrings[j])
 					{
-						if (SCS_ProblemGenerator.isSubstring(working_copy[i], working_copy[j]))
+						if (SCS_BaseGenerator.isSubstring(working_copy[i], working_copy[j]))
 						{
 							// If working_copy[j] is longer, move is to smaller index i.
 							if (working_copy[i].length < working_copy[j].length)
@@ -213,13 +213,13 @@ public class GreedyAlgorithmSCS
 		if(args.length > 0)
 			mainDir = new String(args[0]);
 		else
-			mainDir = new String("Z:\\SCS_Exp\\");
+			mainDir = new String("Z:\\SCS_Exp\\instances\\");
 
 
 		if(args.length > 1)
 			ParameterFilePath = new String(mainDir + args[1]);
 		else
-			ParameterFilePath = new String(mainDir + "manualInstance.txt");
+			ParameterFilePath = new String(mainDir + "RepetitionsInstance.txt");
 
 		GreedyAlgorithmSCS gr = new GreedyAlgorithmSCS();
 
