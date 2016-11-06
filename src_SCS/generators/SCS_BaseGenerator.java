@@ -5,7 +5,7 @@ import java.io.IOException;
 
 abstract public class SCS_BaseGenerator
 {
-	public static int length = 600, arity = 2;
+	public static int length = 400, arity = 2;
 	public static String path = "Z:\\", outFileName = "generated_SCS_input.txt";
 	
 	public void mainWork(String[] args)

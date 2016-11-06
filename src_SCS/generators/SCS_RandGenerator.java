@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class SCS_RandGenerator extends SCS_BaseGenerator
 {
-	public static int minSubstrLen = 20, maxSubstrLen = 30, numOfCopies = 40;
+	public static int minSubstrLen = 20, maxSubstrLen = 30, numOfCopies = 5;
 
 	public static void main(String[] args)
 	{
@@ -63,7 +63,7 @@ public class SCS_RandGenerator extends SCS_BaseGenerator
 		return retVal;
 	}
 
-	public static ArrayList<ArrayList<Integer>> splitString(int[] superstring,
+	public ArrayList<ArrayList<Integer>> splitString(int[] superstring,
 			int minSubstrLen, int maxSubstrLen)
 	{
 		ArrayList<ArrayList<Integer>> retVal = new ArrayList<ArrayList<Integer>>();

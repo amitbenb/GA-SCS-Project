@@ -219,7 +219,7 @@ public class GreedyAlgorithmSCS
 		if(args.length > 1)
 			ParameterFilePath = new String(mainDir + args[1]);
 		else
-			ParameterFilePath = new String(mainDir + "RepetitionsInstance.txt");
+			ParameterFilePath = new String(mainDir + "OneInstance.txt");
 
 		GreedyAlgorithmSCS gr = new GreedyAlgorithmSCS();
 
