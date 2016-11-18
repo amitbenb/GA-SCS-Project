@@ -2,7 +2,7 @@ package generators;
 
 public class SCS_CopiesGenerator extends SCS_RandGenerator
 {
-	int numberOfCopies = 40;
+	int numberOfCopies = 10;
 	
 	public static void main(String[] args)
 	{

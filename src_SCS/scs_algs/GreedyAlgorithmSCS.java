@@ -10,9 +10,9 @@ public class GreedyAlgorithmSCS
 	public static String mainDir = new String("Z:\\");
 	public static String ParameterFilePath = new String("Z:\\parameters.txt");
 
-	int m_arity = 2;
-	int [] m_string = null;
-	int [][] m_substrings = null;
+	public int m_arity = 2;
+	public int [] m_string = null;
+	public int [][] m_substrings = null;
 
 
 	public GreedyAlgorithmSCS()
@@ -20,7 +20,44 @@ public class GreedyAlgorithmSCS
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void run()
+	public int[] mainWork(String[] args)
+	{
+		int[] retVal = null;
+		
+		if(args.length > 0)
+			mainDir = new String(args[0]);
+		else
+			mainDir = new String("Z:\\SCS_Exp\\instances\\");
+
+
+		if(args.length > 1)
+			ParameterFilePath = new String(mainDir + args[1]);
+		else
+			ParameterFilePath = new String(mainDir + "OneInstance.txt");
+
+		try
+		{
+			fetchProblem(ParameterFilePath);
+
+			retVal = run(false);
+			
+//			System.out.println(gr.m_arity);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+		
+		return retVal;
+	}
+
+	/**
+	 * 
+	 * @param outputFlag Flag that controls debug output.
+	 * @return Solution found.
+	 */
+	public int[] run(boolean outputFlag)
 	{
 		int[][] working_copy = new int[m_substrings.length][];
 		boolean[] available_substrings = new boolean[m_substrings.length];
@@ -33,12 +70,17 @@ public class GreedyAlgorithmSCS
 		
 		
 //		System.out.print("X");
-		for (int i = 0; i < working_copy[0].length; i++)
+		if(outputFlag)
 		{
-			System.out.print(working_copy[0][i] + "_");
+			for (int i = 0; i < working_copy[0].length; i++)
+			{
+				System.out.print(working_copy[0][i] + "_");
+			}
+			System.out.println();
+			System.out.println(working_copy[0].length);
 		}
-		System.out.println();
-		System.out.println(working_copy[0].length);
+		
+		return working_copy[0];
 
 	}
 	
@@ -210,32 +252,9 @@ public class GreedyAlgorithmSCS
 
 	public static void main(String[] args)
 	{
-		if(args.length > 0)
-			mainDir = new String(args[0]);
-		else
-			mainDir = new String("Z:\\SCS_Exp\\instances\\");
-
-
-		if(args.length > 1)
-			ParameterFilePath = new String(mainDir + args[1]);
-		else
-			ParameterFilePath = new String(mainDir + "OneInstance.txt");
-
 		GreedyAlgorithmSCS gr = new GreedyAlgorithmSCS();
 
-		try
-		{
-			gr.fetchProblem(ParameterFilePath);
-
-			gr.run();
-			
-//			System.out.println(gr.m_arity);
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-			throw new RuntimeException();
-		}
+		gr.mainWork(args);
 	}
 
 	public void fetchProblem(String fileName)throws Exception

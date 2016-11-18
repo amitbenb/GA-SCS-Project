@@ -8,12 +8,19 @@ abstract public class SCS_BaseGenerator
 	public static int length = 400, arity = 2;
 	public static String path = "Z:\\", outFileName = "generated_SCS_input.txt";
 	
-	public void mainWork(String[] args)
+	public int[][] mainWork(String[] args)
 	{
+		int[][] retVal = null;
 		FileWriter outF;
 		try
 		{
-			outF = new FileWriter(path + outFileName);
+			if (args.length <= 0)
+				outF = new FileWriter(path + outFileName);
+			else if (args.length <= 1)
+				outF = new FileWriter(args[0] + outFileName);
+			else
+				outF = new FileWriter(args[0] + args[1]);
+				
 			
 			int[] randString = generateTemplateString(length, arity);
 			
@@ -22,6 +29,13 @@ abstract public class SCS_BaseGenerator
 //				System.out.print(randString[i] + " ");
 //			}
 			int[][] substrings = generateSubstrings(randString);
+
+//			retVal = new int[substrings.length + 1][];
+//			retVal[0] = randString;
+//			for (int i = 1; i < retVal.length; i++)
+//			{
+//				retVal[i] = substrings[i-1];
+//			}
 
 			// Debug output loop
 //			for (int i = 0; i < substrings.length; i++)
@@ -59,12 +73,34 @@ abstract public class SCS_BaseGenerator
 			e.printStackTrace();
 			throw new RuntimeException();
 		}
+		
+		return retVal;
 	}
 	
 	abstract public int[][] generateSubstrings(int[] randString);
 
 	abstract public int[] generateTemplateString(int length, int arity);
 
+	public void writeProblem(int[] randString, int[][] substrings, String outFileName)
+	{
+		FileWriter outF;
+
+		try
+		{
+			outF = new FileWriter(outFileName);
+			
+			writeProblem(randString, substrings, outF);
+			
+			outF.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+		
+	}
+			
 	public void writeProblem(int[] randString, int[][] substrings, FileWriter outFile)
 			throws IOException
 	{
